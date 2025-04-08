@@ -25,10 +25,10 @@ public class EvenementController {
 	        @RequestParam(name = "page", defaultValue = "0") int page,
 	        @RequestParam(name = "size", defaultValue = "2") int size) {
 	    
-	    Page<Evenement> events = evenementService.getAllEvenementsParPage(page, size);
+	    //Page<Evenement> events = evenementService.getAllEvenementsParPage(page, size);
 	    
-	    modelMap.addAttribute("evenements", events);
-	    modelMap.addAttribute("pages", new int[events.getTotalPages()]);
+	    //modelMap.addAttribute("evenements", events);
+	    //modelMap.addAttribute("pages", new int[events.getTotalPages()]);
 	    modelMap.addAttribute("currentPage", page);
 	    modelMap.addAttribute("size", size);
 	    
@@ -62,10 +62,10 @@ public class EvenementController {
 	        @RequestParam(name = "size", defaultValue = "2") int size) {
 	    
 	    evenementService.deleteEvenementById(id);
-	    Page<Evenement> events = evenementService.getAllEvenementsParPage(page, size);
+	    //Page<Evenement> events = evenementService.getAllEvenementsParPage(page, size);
 	    
-	    modelMap.addAttribute("evenements", events.getContent());
-	    modelMap.addAttribute("pages", new int[events.getTotalPages()]);
+	   // modelMap.addAttribute("evenements", events.getContent());
+	    //modelMap.addAttribute("pages", new int[events.getTotalPages()]);
 	    modelMap.addAttribute("currentPage", page);
 	    modelMap.addAttribute("size", size);
 	    

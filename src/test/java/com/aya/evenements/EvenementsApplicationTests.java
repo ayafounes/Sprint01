@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 
 import com.aya.evenements.entities.Evenement;
+import com.aya.evenements.entities.Genre;
 import com.aya.evenements.repos.EvenementRepository;
 import com.aya.evenements.service.EvenementService;
 
@@ -53,14 +54,64 @@ class EvenementsApplicationTests {
         }
     }
 
+    
+    @Test
+    public void testFindByNomEvenement() {
+        List<Evenement> events = evenementRepository.findByNomEvenement("Festival Culturel");
+        for (Evenement e : events) {
+            System.out.println(e);
+        }
+    }
     @Test
     public void testFindByNomEvenementContains() {
-        Page<Evenement> events = evenementService.getAllEvenementsParPage(0, 2);
-        System.out.println(events.getSize());
-        System.out.println(events.getTotalElements());
-        System.out.println(events.getTotalPages());
-        events.getContent().forEach(e -> {
-            System.out.println(e.toString());
-        });
+        List<Evenement> events = evenementRepository.findByNomEvenementContains("Festival Culturel");
+        for (Evenement e : events) {
+            System.out.println(e);
+        }
     }
+    @Test
+    public void testFindByNomPrix() {
+        List<Evenement> events = evenementRepository.findByNomPrix("Festival Culturel", 120.0);
+        for (Evenement e : events) {
+            System.out.println(e);
+        }
+    }
+    @Test
+    public void testFindByGenre() {
+        Genre genre = new Genre();
+        genre.setIdGenre(1L);
+        
+        List<Evenement> events = evenementRepository.findByGenre(genre);
+        
+        for (Evenement e : events) {
+            System.out.println(e);
+        }
+    }
+    @Test
+    public void testFindByGenreIdGenre() {
+        List<Evenement> events = evenementRepository.findByGenreIdGenre(1L);
+        
+        for (Evenement event : events) {
+            System.out.println(event);
+        }
+    }
+    @Test
+    public void testFindByOrderByNomEvenementAsc() {
+        List<Evenement> events = evenementRepository.findByOrderByNomEvenementAsc();
+        
+        for (Evenement event : events) {
+            System.out.println(event);
+        }
+    }
+    @Test
+    public void testTrierEvenementsNomsPrix() {
+        List<Evenement> events = evenementRepository.trierEvenementsNomsPrix();
+        
+        for (Evenement event : events) {
+            System.out.println(event);
+        }
+    }
+    
+    
+    
 }
